@@ -1,0 +1,38 @@
+-- Question 1 -- 
+/*
+SELECT SEGMENT_NAME, BYTES/1024 AS KILOBYTES
+FROM USER_SEGMENTS
+WHERE SEGMENT_NAME = 'TEST';
+*/
+
+-- Question 1.1.3 -- 
+
+-- Number of segments -- 
+
+SELECT COUNT(*) AS Nombre_de_segments
+FROM USER_SEGMENTS
+WHERE SEGMENT_NAME = 'TEST';
+
+-- Name of the segment in TEST -- 
+
+SELECT distinct SEGMENT_NAME, SEGMENT_TYPE
+FROM USER_SEGMENTS
+WHERE TABLESPACE_NAME = (SELECT TABLESPACE_NAME FROM USER_TABLES WHERE TABLE_NAME = 'TEST');
+
+-- Segment Type -- 
+
+Select segment_type 
+FROM USER_SEGMENTS
+WHERE SEGMENT_NAME = 'TEST';
+
+-- Name of the space of the table -- 
+
+SELECT TABLESPACE_NAME
+FROM USER_SEGMENTS
+WHERE SEGMENT_NAME = 'TEST';
+
+-- Number of extensions in which has this segment -- 
+
+SELECT COUNT(*) AS Nombre_d_extensions
+FROM USER_EXTENTS
+WHERE SEGMENT_NAME = 'TEST';
